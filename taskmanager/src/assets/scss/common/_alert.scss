@@ -1,0 +1,10 @@
+.alert{
+    font-size: 12px;
+    margin-bottom: 10px;
+    &.alert-success{
+        color: $sucess;    
+    }
+    &.alert-danger{
+        color: $red;
+    }
+}
