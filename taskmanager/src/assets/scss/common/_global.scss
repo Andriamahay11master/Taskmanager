@@ -22,7 +22,7 @@ h1, .title-h1{
   font-size: 40px;
   line-height: 1.2;
   font-weight: 700;
-  color: #000;
+  color: $black;
   @include max(768px){
     font-size: 34px;
   }
@@ -30,10 +30,10 @@ h1, .title-h1{
 
 
 h2, .title-h2{
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.2;
   font-weight: 700;
-  color: #000;
+  color: $color-primary;
 
   &.white {
     color: #fff;

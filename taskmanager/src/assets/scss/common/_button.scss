@@ -7,10 +7,6 @@
   cursor: pointer;
   display: inline-block;
 
-  @media (max-width: 1440px) {
-    font-size: 15px;
-  }
-
   &:hover {
     cursor: pointer;
   }
@@ -121,18 +117,10 @@
   }
 
   &.btn-link {
-    font-size: 16px;
     padding: 0;
-    padding-right: 16px;
-    color: #000;
+    color: $color-primary;
     font-weight: 300;
     border-radius: 0;
-
-    @include max(1440px) {
-      font-size: 14px;
-      padding-right: 8px;
-    }
-
     i {
       font-size: 14px;
       margin-right: 8px;

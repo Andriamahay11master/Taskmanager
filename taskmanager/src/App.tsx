@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Onboarding from './components/onboarding/Onboarding';
+import Signup from './components/signup/Signup';
 
 function App() {
   const dataOnboarding = {
@@ -12,9 +13,27 @@ function App() {
     labelButton: 'Get Started',
     routeButton: '/onboarding'
   }
+
+  const saveAccount = () => {
+    console.log('saveAccount');
+  }
+
+  const dataSIgnup = {
+    title: 'Create an account',
+    subtitle: 'Sign up',
+    username: 'Your Username',
+    email: 'Your Email',
+    password: 'Password',
+    labelButton: 'Sign up',
+    routeSignin: '/',
+    textUser: 'Already a user?',
+    labelSignin: 'Sign in',
+    saveAccount: saveAccount
+  }
   return (
     <div className="appBlock">
-      <Onboarding {...dataOnboarding}/>
+      {/* <Onboarding {...dataOnboarding}/> */}
+      <Signup {...dataSIgnup}/> 
     </div>
   );
 }
