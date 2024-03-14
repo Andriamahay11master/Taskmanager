@@ -62,6 +62,16 @@ select{
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
+            i{
+                font-size: 12px;
+                margin-right: 3px;
+                &.icon-mail{
+                    font-size: 9px;
+                }
+                &.icon-user{
+                    font-size: 13px;
+                }
+            }
         }
         input, select{
             &:focus{

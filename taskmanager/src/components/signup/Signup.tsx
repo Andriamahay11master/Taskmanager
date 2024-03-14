@@ -21,15 +21,15 @@ export default function Signup({title, subtitle, username, email, password, labe
                 <h2 className="title-h2">{subtitle}</h2>
                 <form>
                     <div className="form-group">
-                        <label htmlFor="username">{username}</label>
+                        <label htmlFor="username"><i className="icon-user"></i>{username}</label>
                         <input type="text" id="username" placeholder="Write your username"/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">{email}</label>
+                        <label htmlFor="email"><i className="icon-mail"></i>{email}</label>
                         <input type="email" id="email" placeholder="Write your email"/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">{password}</label>
+                        <label htmlFor="password"><i className="icon-lock"></i>{password}</label>
                         <input type="password" id="password" placeholder="Write your password"/>
                     </div>
                     <div className="form-group form-submit">
