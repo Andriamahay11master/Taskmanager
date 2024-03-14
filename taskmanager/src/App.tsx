@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Onboarding from './components/onboarding/Onboarding';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './components/signup/Signup';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     title: 'Simplify, Organize, and Conquer <span>Your Day</span>',
     description: 'Take control of your tasks and achieve your goals..',
     labelButton: 'Get Started',
-    routeButton: '/onboarding'
+    routeButton: '/signup'
   }
 
   const saveAccount = () => {
@@ -25,16 +26,19 @@ function App() {
     email: 'Your Email',
     password: 'Password',
     labelButton: 'Sign up',
-    routeSignin: '/',
+    routeSignin: '/signin',
     textUser: 'Already a user?',
     labelSignin: 'Sign in',
     saveAccount: saveAccount
   }
   return (
-    <div className="appBlock">
-      {/* <Onboarding {...dataOnboarding}/> */}
-      <Signup {...dataSIgnup}/> 
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/onboarding" element={<Onboarding {...dataOnboarding}/>}/>
+        <Route path="/signup" element={<Signup {...dataSIgnup}/>}/>
+        <Route path="/" element={<Onboarding {...dataOnboarding}/>}/>
+      </Routes>
+    </Router>
   );
 }
 

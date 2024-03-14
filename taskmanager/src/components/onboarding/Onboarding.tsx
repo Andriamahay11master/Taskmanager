@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './onboarding.scss';
 
 interface OnboardingProps {
@@ -22,7 +23,7 @@ export default function Onboarding({image, imageAlt, imageTitle, title, descript
                 <p>{description}</p>
             </div>
             <div className="onboardingButton">
-                <a className="btn btn-primary" href={routeButton}>{labelButton}</a>
+                <Link className="btn btn-primary" to={routeButton}>{labelButton}</Link>
             </div>
         </div>
     );

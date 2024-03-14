@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 interface SignupProps {
     title: string
@@ -35,7 +36,7 @@ export default function Signup({title, subtitle, username, email, password, labe
                         <button className="btn btn-primary" onClick={() => saveAccount()}>{labelButton}</button>
                     </div>
                 </form>
-                <p>{textUser} <a className="btn btn-link" href={routeSignin}>{labelSignin}</a></p>
+                <p>{textUser} <Link className="btn btn-link" to={routeSignin}>{labelSignin}</Link></p>
             </div>
         </div>
     );
