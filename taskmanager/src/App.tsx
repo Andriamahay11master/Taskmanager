@@ -3,6 +3,7 @@ import './App.scss';
 import Onboarding from './components/onboarding/Onboarding';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './components/signup/Signup';
+import Signin from './components/signin/Signin';
 
 function App() {
   const dataOnboarding = {
@@ -19,6 +20,10 @@ function App() {
     console.log('saveAccount');
   }
 
+  const connectAccount = () => {
+    console.log('connectAccount');
+  }
+
   const dataSIgnup = {
     title: 'Create an account',
     subtitle: 'Sign up',
@@ -31,11 +36,26 @@ function App() {
     labelSignin: 'Sign in',
     saveAccount: saveAccount
   }
+
+  const dataSignin = {
+    title: 'Welcome Back',
+    subtitle: 'Login',
+    email: 'Your Email',
+    password: 'Password',
+    labelButton: 'Login',
+    routeSignup: '/signup',
+    textUser: "Don't have an account?",
+    labelSignup: 'Sign up', 
+    textForgot: 'Forgot your password?',
+    routeForgot: '/forgot',
+    connectAccount: connectAccount
+  }
   return (
     <Router>
       <Routes>
         <Route path="/onboarding" element={<Onboarding {...dataOnboarding}/>}/>
         <Route path="/signup" element={<Signup {...dataSIgnup}/>}/>
+        <Route path="/signin" element={<Signin {...dataSignin}/>}/>
         <Route path="/" element={<Onboarding {...dataOnboarding}/>}/>
       </Routes>
     </Router>
