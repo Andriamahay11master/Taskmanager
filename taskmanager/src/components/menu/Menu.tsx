@@ -9,7 +9,7 @@ interface MenuProps {
 export default function Menu({listRouting, routeAdd} : MenuProps) {
     return (
         <div className="menu">
-            <ul className="list-menu">
+            <ul className={routeAdd ? "list-menu list-menu-add" : "list-menu"}>
                 <li>
                     <Link className="link-menu" to={listRouting[0]}><i className="icon-home"></i></Link>
                 </li>
@@ -25,7 +25,7 @@ export default function Menu({listRouting, routeAdd} : MenuProps) {
                     <Link className="link-menu" to={listRouting[2]}><i className="icon-tasks"></i></Link>
                 </li>
                 <li>
-                    <Link className="link-menu" to={listRouting[3]}><i className="icon-briefcase"></i></Link>
+                    <Link className="link-menu" to={listRouting[3]}><i className="icon-parameter"></i></Link>
                 </li>
             </ul>
         </div>

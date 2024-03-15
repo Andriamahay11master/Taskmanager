@@ -4,7 +4,7 @@ import Onboarding from './components/onboarding/Onboarding';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './components/signup/Signup';
 import Signin from './components/signin/Signin';
-
+import Home from './components/home/Home';
 function App() {
   const dataOnboarding = {
     image: 'images/onboarding.svg',
@@ -18,10 +18,6 @@ function App() {
 
   const saveAccount = () => {
     console.log('saveAccount');
-  }
-
-  const connectAccount = () => {
-    console.log('connectAccount');
   }
 
   const dataSIgnup = {
@@ -48,11 +44,12 @@ function App() {
     labelSignup: 'Sign up', 
     textForgot: 'Forgot your password?',
     routeForgot: '/forgot',
-    connectAccount: connectAccount
+    routeClick: '/home'
   }
   return (
     <Router>
       <Routes>
+        <Route path="/home" element={<Home/>} />
         <Route path="/onboarding" element={<Onboarding {...dataOnboarding}/>}/>
         <Route path="/signup" element={<Signup {...dataSIgnup}/>}/>
         <Route path="/signin" element={<Signin {...dataSignin}/>}/>

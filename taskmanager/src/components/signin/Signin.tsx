@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface SigninProps {
     title: string
@@ -12,9 +13,16 @@ interface SigninProps {
     labelSignup: string
     textForgot: string
     routeForgot: string
-    connectAccount: () => void
+    routeClick: string
 }
-export default function Signin({title, subtitle, email, password, labelButton, routeSignup, textUser, labelSignup, textForgot, routeForgot, connectAccount} : SigninProps) {
+export default function Signin({title, subtitle, email, password, labelButton, routeSignup, textUser, labelSignup, textForgot, routeForgot, routeClick} : SigninProps) {
+    
+    const navigate = useNavigate();
+
+    const connectAccount = () => {
+        navigate(routeClick);
+    }
+
     return (
         <div className="form-block">
             <h1 className="title-h1">{title}</h1>
@@ -33,7 +41,7 @@ export default function Signin({title, subtitle, email, password, labelButton, r
                         <Link className="btn btn-link" to={routeForgot}>{textForgot}</Link>
                     </div>
                     <div className="form-group form-submit">
-                        <button className="btn btn-primary" onClick={() => connectAccount()}>{labelButton}</button>
+                        <button className="btn btn-primary" onClick={connectAccount}>{labelButton}</button>
                     </div>
                 </form>
                 <p>{textUser} <Link className="btn btn-link" to={routeSignup}>{labelSignup}</Link></p>
