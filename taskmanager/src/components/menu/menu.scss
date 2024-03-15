@@ -1,0 +1,19 @@
+@import '../../assets/scss/common/_variables.scss';
+@import '../../assets/scss/common/_mixins.scss';
+
+.menu {
+    position: fixed;
+    bottom: 14px;
+    left: 0;
+    width: calc(100vw - 20px);
+    padding: 15px 37px;
+    background-color: $color-white;
+    z-index: 999;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    .list-menu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
