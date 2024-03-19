@@ -1,8 +1,9 @@
 import React from 'react';
 import Menu from '../menu/Menu';
-import {dataMenu} from '../../data';
+import {dataMenu, listCategory} from '../../data';
 import './home.scss';      
 import { Link } from 'react-router-dom';
+import Category from '../category/Category';
 
 export default function Home() {
     
@@ -18,7 +19,7 @@ export default function Home() {
             <div className="appItem">
                 <h2 className="title-h2">Categories</h2>
                 <div className="listCategory">
-
+                    {listCategory.map((item, index) => <Category key={index} label={item.label} icon={item.icon} color={item.color} />)}
                 </div>
             </div>
             <div className="appItem">

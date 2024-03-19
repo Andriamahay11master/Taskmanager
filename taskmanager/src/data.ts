@@ -57,4 +57,28 @@ const dataMenuWithoutAdd = {
     indicePosition
 }
 
-export { dataMenu, dataMenuWithoutAdd }
+//dataCatogory
+const listCategory = [
+    {
+        label: 'Work',
+        icon: 'icon-work',
+        color: '#2196F3'
+    },
+    {
+        label: 'Personal',
+        icon: 'icon-user',
+        color: '#FF5722'
+    },
+    {
+        label: 'Shopping',
+        icon: 'icon-shopping-cart',
+        color: '#FFC107'
+    },
+    {
+        label: 'Health',
+        icon: 'icon-heart',
+        color: '#FFA3A3'
+    }
+]
+
+export { dataMenu, dataMenuWithoutAdd, listCategory }

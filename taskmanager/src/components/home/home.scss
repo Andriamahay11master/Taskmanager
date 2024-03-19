@@ -27,6 +27,9 @@
     }
     .appItem{
         margin-bottom: 21px;
+        & > .title-h2{
+            margin-bottom: 13px;
+        }   
     }
     .title-h2{
         font-size: 20px;
@@ -42,9 +45,6 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 11px;
-        .title-h2{
-            margin-bottom: 13px;
-        }
     }
     .listTask{
 

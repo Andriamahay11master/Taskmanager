@@ -1,0 +1,27 @@
+@import '../../assets/scss/common/variable';
+@import '../../assets/scss/common/mixins';
+
+.category-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid $color-primary;
+    padding: 25px 0;
+    transition: all 0.6s ease;
+    cursor: pointer;
+    &:hover{
+        box-shadow: 0 0 5px -1px rgba(black, 0.3);
+    }
+    .category-item-block{
+        text-align: center;
+        i{
+            margin-bottom: 5px;
+            font-size: 28px;
+            display: block;
+        }
+        p{
+            font-size: 12px;
+        }
+    }
+}
