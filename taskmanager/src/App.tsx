@@ -8,6 +8,7 @@ import Home from './components/home/Home';
 import Calendar from './components/calendar/Calendar';
 import Parameter from './components/parameter/Parameter';
 import Task from './components/task/Task';
+import Addtask from './components/addTask/Addtask';
 function App() {
   const dataOnboarding = {
     image: 'images/onboarding.svg',
@@ -56,6 +57,7 @@ function App() {
         <Route path="/onboarding" element={<Onboarding {...dataOnboarding}/>}/>
         <Route path="/calendar" element={<Calendar />}/>
         <Route path="/parameter" element={<Parameter />}/>
+        <Route path="/addTask" element={<Addtask />}/>
         <Route path="/task" element={<Task />}/>
         <Route path="/signup" element={<Signup {...dataSIgnup}/>}/>
         <Route path="/signin" element={<Signin {...dataSignin}/>}/>

@@ -1,16 +1,60 @@
 //Element Menu
 const listRouting = [
-    '/home',
-    '/calendar',
-    '/task',
-    '/parameter',
+    {
+        route: '/home',
+        icon: 'icon-home'
+    },
+    {
+        route: '/calendar',
+        icon: 'icon-calendar'
+    },
+    {
+        route: '/addTask',
+        icon: 'icon-plus'
+    },
+    {
+        route: '/task',
+        icon: 'icon-tasks'
+    },
+    {
+        route: '/parameter',
+        icon: 'icon-parameter'
+    }
 ];
 
-const routeAdd = '/add';
+//without plus
+const listRouting2 = [
+    {
+        route: '/home',
+        icon: 'icon-home'
+    },
+    {
+        route: '/calendar',
+        icon: 'icon-calendar'
+    },
+    {
+        route: '/task',
+        icon: 'icon-tasks'
+    },
+    {
+        route: '/parameter',
+        icon: 'icon-parameter'
+    }
+];
+
+const routeAdd = true
+const indicePosition = 2
 
 const dataMenu = {
     listRouting,
-    routeAdd
+    routeAdd,
+    indicePosition
 }
 
-export { dataMenu }
+const dataMenuWithoutAdd = {
+    listRouting: listRouting2,
+    routeAdd : false,
+    indicePosition
+}
+
+export { dataMenu, dataMenuWithoutAdd }
