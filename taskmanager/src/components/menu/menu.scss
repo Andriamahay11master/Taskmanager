@@ -12,6 +12,17 @@
     z-index: 999;
     border-radius: 20px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    .link-menu{
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba($black, 0.7);
+        font-size: 23px;
+        &.active{
+            color: $color-primary;
+        }
+    }
     .list-menu{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -28,19 +39,8 @@
                 border-radius: 100%;
                 margin-top: -45px;
                 color: $white;
+                font-size: 20px;
             }
-        }
-        
-    }
-    .link-menu{
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba($black, 0.7);
-        font-size: 25px;
-        &.active{
-            color: $color-primary;
-        }
+        } 
     }
 }
