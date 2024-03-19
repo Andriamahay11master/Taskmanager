@@ -2,9 +2,28 @@
 @import '../../assets/scss/common/_mixins.scss';
 
 .appBlock{
+    padding-bottom: 75px;
     .appSearchBlock{
         margin-bottom: 24px;
-        position: relative;
+        position: sticky;
+        top: 20px;
+        z-index: 2;
+        background: $white;
+        transition: all 0.6s ease;
+        &::before{
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: -100px;
+            width: 100vw;
+            height: 175px;
+            background: $white;
+            z-index: -1;
+            @include max(575px){
+                top: -50px;
+                height: 125px;
+            }
+        }
         button{
             position: absolute;
             left: 18px;

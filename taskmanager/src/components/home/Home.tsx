@@ -1,9 +1,10 @@
 import React from 'react';
 import Menu from '../menu/Menu';
-import {dataMenu, listCategory} from '../../data';
+import {dataMenu, listCategory, listTasks} from '../../data';
 import './home.scss';      
 import { Link } from 'react-router-dom';
 import Category from '../category/Category';
+import Itemtask from '../ItemTask/Itemtask';
 
 export default function Home() {
     
@@ -27,7 +28,7 @@ export default function Home() {
                 <Link className="btn btn-link" to="/task">See all</Link>
                 </div>
                 <div className="listTask">
-
+                    {listTasks.map((item, index) => <Itemtask key={index} task={item.task} time={item.time} />)}
                 </div>
             </div>
             <Menu {...dataMenu}/>

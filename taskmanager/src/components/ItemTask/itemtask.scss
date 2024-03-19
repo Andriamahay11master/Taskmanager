@@ -1,0 +1,39 @@
+@import '../../assets/scss/common/variable';
+@import '../../assets/scss/common/mixins';
+
+.task-item{
+    background: rgba($color-primary, 0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 20px;
+    border: 1px solid rgba($grey, 0.6);
+    margin-bottom: 15px;
+    input[type="checkbox"]{
+        width: 15px;
+        height: 15px;
+        margin-right: 15px;
+        &:checked{
+            background: #fefefe;
+            border-color: $color-primary;
+        }
+    }
+    p{
+        font-size: 13px;  
+        color: rgba($black, 0.8);
+    }
+    &.task-finished{
+        p{
+            text-decoration: line-through;
+        }
+        .time{
+            color: $color-primary;
+        }
+    }
+    .task-col{
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+    }
+}

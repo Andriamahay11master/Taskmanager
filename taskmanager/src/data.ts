@@ -81,4 +81,40 @@ const listCategory = [
     }
 ]
 
-export { dataMenu, dataMenuWithoutAdd, listCategory }
+//List tasks
+const listTasks = [
+    {
+        id: 1,
+        task: 'Finish Report',
+        date: '19/03/2024',
+        time: '10:00',
+        notes: 'Finish Report',
+        state: false
+    },
+    {
+        id: 2,
+        task: 'Gym Workout',
+        date: '19/03/2024',
+        time: '11:00',
+        notes: 'Gym',
+        state: false
+    },
+    {
+        id: 3,
+        task: 'Project Meeting',
+        date: '19/03/2024',
+        time: '12:00',
+        notes: 'Project',
+        state: false
+    },
+    {
+        id: 4,
+        task: 'Read Chapter 3',
+        date: '19/03/2024',
+        time: '13:00',
+        notes: 'Read',
+        state: false
+    },
+]
+
+export { dataMenu, dataMenuWithoutAdd, listCategory, listTasks }
