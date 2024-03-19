@@ -1,0 +1,64 @@
+@import '../../assets/scss/common/_variable.scss';
+@import '../../assets/scss/common/_mixins.scss';
+
+.appForm{
+    .input-forms{
+        background: rgba($color-primary, 0.08);
+        border: none;
+        border-radius: 10px;
+        color: $black;
+        font-size: 13px;
+        padding: 16px 20px;
+        width: 100%;
+        &::placeholder{
+            color: rgba($black, 0.5);
+            font-size: 13px;
+        }
+    }
+    select{
+        -webkit-appearance: unset!important;
+    }
+    .input-form-custom{
+        width: 100%;
+        input{
+            padding: 16px 20px;
+            font-size: 13px;
+            &::placeholder{
+                color: rgba($black, 0.5);
+                font-size: 13px;
+            }
+        }
+        fieldset{
+            background: rgba($color-primary, 0.08);
+            border: none;
+            text-transform: lowercase;
+            border-radius: 10px;
+        }
+    }
+    label{
+        display: block;
+        color: $color-primary;
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+    .form-group{
+        margin-bottom: 21px;
+        &.form-submit{
+            position: fixed;
+            bottom: 75px;
+            right: 20px;
+            .btn-primary{
+                background: $color-primary;
+                width: 55px;
+                height: 55px;
+                border-radius: 100%;
+                color: $white;
+                font-size: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

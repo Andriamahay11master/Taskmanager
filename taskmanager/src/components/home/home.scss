@@ -65,7 +65,20 @@
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 11px;
     }
-    .listTask{
-
+    .appAdd{
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        .btn-primary{
+            background: $color-primary;
+            width: 55px;
+            height: 55px;
+            border-radius: 100%;
+            color: $white;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 }

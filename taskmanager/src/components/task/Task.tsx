@@ -1,8 +1,9 @@
 
 import Menu from '../menu/Menu';
-import {dataMenu, listTasks} from '../../data';
+import {dataMenuWithoutAdd, listTasks} from '../../data';
 import './task.scss';
 import Itemtask from '../ItemTask/Itemtask';
+import { Link } from 'react-router-dom';
 
 export default function Task() {
     return (
@@ -14,7 +15,10 @@ export default function Task() {
                     {listTasks.map((item, index) => <Itemtask key={index} task={item.task} time={item.time} />)}
                 </div>
             </div>
-            <Menu {...dataMenu}/>
+            <div className="appAdd">
+                <Link to="/addTask" className="btn btn-primary"><i className="icon-plus"></i></Link>
+            </div>
+            <Menu {...dataMenuWithoutAdd}/>
         </div>
     )
 }
