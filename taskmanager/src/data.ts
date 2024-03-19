@@ -14,7 +14,7 @@ const listRouting = [
     },
     {
         route: '/task',
-        icon: 'icon-tasks'
+        icon: 'icon-list'
     },
     {
         route: '/parameter',
@@ -34,7 +34,7 @@ const listRouting2 = [
     },
     {
         route: '/task',
-        icon: 'icon-tasks'
+        icon: 'icon-list'
     },
     {
         route: '/parameter',

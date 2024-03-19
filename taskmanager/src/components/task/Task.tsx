@@ -6,7 +6,7 @@ import './task.scss';
 export default function Task() {
     return (
         
-        <div className="home">
+        <div className="appBlock">
             <Menu {...dataMenu}/>
         </div>
     )

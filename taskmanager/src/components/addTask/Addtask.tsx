@@ -6,7 +6,7 @@ import './addTask.scss';
 export default function Addtask() {
     return (
         
-        <div className="home">
+        <div className="appBlock">
             <Menu {...dataMenuWithoutAdd}/>
         </div>
     )

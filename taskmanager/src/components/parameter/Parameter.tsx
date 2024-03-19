@@ -6,7 +6,7 @@ import './parameter.scss';
 export default function Parameter() {
     return (
         
-        <div className="home">
+        <div className="appBlock">
             <Menu {...dataMenu}/>
         </div>
     )

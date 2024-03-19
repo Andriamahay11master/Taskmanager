@@ -6,7 +6,7 @@ import './calendar.scss';
 export default function Calendar() {
     return (
         
-        <div className="home">
+        <div className="appBlock">
             <Menu {...dataMenu}/>
         </div>
     )

@@ -1,17 +1,6 @@
-.block-page{
-    
-}
-.main-page{
-    padding-top: 75px;
-    background: $default-bg;
-    min-height: calc(100vh - 54px);
-    @include max(768px){
-        min-height: auto;
-    }
-    .main-page-top{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
+.appBlock{
+    padding: 100px 20px 0 20px;
+    @include max(575px){
+        padding-top: 50px;
     }
 }
