@@ -14,6 +14,12 @@ interface SignupProps {
     saveAccount: () => void
 }
 export default function Signup({title, subtitle, username, email, password, labelButton, routeSignin, textUser, labelSignin, saveAccount} : SignupProps) {
+
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    }
     return (
         <div className="form-block">
             <h1 className="title-h1">{title}</h1>
@@ -30,7 +36,10 @@ export default function Signup({title, subtitle, username, email, password, labe
                     </div>
                     <div className="form-group">
                         <label htmlFor="password"><i className="icon-lock"></i>{password}</label>
-                        <input type="password" id="password" placeholder="Write your password"/>
+                        <div className="form-group-password">
+                            <input type={showPassword ? "text" : "password"} id="password" placeholder="Write your password"/>
+                            <i className={showPassword ? "icon-eye-off" : "icon-eye"} onClick={() => toggleShowPassword()}></i>
+                        </div>
                     </div>
                     <div className="form-group form-submit">
                         <button className="btn btn-primary" onClick={() => saveAccount()}>{labelButton}</button>

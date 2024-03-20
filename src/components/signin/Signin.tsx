@@ -18,9 +18,14 @@ interface SigninProps {
 export default function Signin({title, subtitle, email, password, labelButton, routeSignup, textUser, labelSignup, textForgot, routeForgot, routeClick} : SigninProps) {
     
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = React.useState(false);
 
     const connectAccount = () => {
         navigate(routeClick);
+    }
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
     }
 
     return (
@@ -35,7 +40,10 @@ export default function Signin({title, subtitle, email, password, labelButton, r
                     </div>
                     <div className="form-group">
                         <label htmlFor="password"><i className="icon-lock"></i>{password}</label>
-                        <input type="password" id="password" placeholder="Write your password"/>
+                        <div className="form-group-password">
+                            <input type={showPassword ? "text" : "password"} id="password" placeholder="Write your password" />
+                            <i className={showPassword ? "icon-eye-off" : "icon-eye"} onClick={toggleShowPassword}></i>
+                        </div>
                     </div>
                     <div className="form-group form-forgot">
                         <Link className="btn btn-link" to={routeForgot}>{textForgot}</Link>

@@ -60,6 +60,17 @@ select{
                 text-align: center;
                 font-size: 13px;
             }
+            .form-group-password{
+                position: relative;
+                i{
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                    font-size: 20px;
+                }
+            }
         }
         label{
             font-size: 13px;
