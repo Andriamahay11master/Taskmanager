@@ -39,4 +39,14 @@ const dataOnboarding = {
     routeClick: '/home'
   }
 
-  export {dataOnboarding, dataSIgnup, dataSignin}
+  const dataForgot = {
+    title: 'Forgot your password?',
+    subtitle: 'Enter your email and we will send you a link to reset your password',
+    email: 'Your Email',
+    labelButton: 'Send',
+    routeSignup: '/signup',
+    textUser: "Don't have an account?",
+    labelSignup: 'Sign up',
+  }
+
+  export {dataOnboarding, dataSIgnup, dataSignin, dataForgot}

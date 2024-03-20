@@ -9,9 +9,10 @@ import Calendar from './components/calendar/Calendar';
 import Parameter from './components/parameter/Parameter';
 import Task from './components/task/Task';
 import Addtask from './components/addTask/Addtask';
-import { dataOnboarding, dataSIgnup, dataSignin } from './dataLog';
+import { dataOnboarding, dataSIgnup, dataSignin, dataForgot } from './dataLog';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import Forgot from './components/forgot/Forgot';
 function App() {
   
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/task" element={<Task />}/>
         <Route path="/signup" element={<Signup {...dataSIgnup}/>}/>
         <Route path="/signin" element={<Signin {...dataSignin}/>}/>
+        <Route path="/forgot" element={<Forgot {...dataForgot}/>}/>
         <Route path="/" element={<Onboarding {...dataOnboarding}/>}/>
       </Routes>
     </Router>
