@@ -8,21 +8,15 @@ const dataOnboarding = {
     routeButton: '/signup'
   }
 
-  const saveAccount = () => {
-    console.log('saveAccount');
-  }
-
   const dataSIgnup = {
     title: 'Create an account',
     subtitle: 'Sign up',
-    username: 'Your Username',
-    email: 'Your Email',
-    password: 'Password',
+    emailu: 'Your Email',
+    passwordu: 'Password',
     labelButton: 'Sign up',
     routeSignin: '/signin',
     textUser: 'Already a user?',
     labelSignin: 'Sign in',
-    saveAccount: saveAccount
   }
 
   const dataSignin = {

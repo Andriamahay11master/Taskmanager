@@ -72,6 +72,11 @@ select{
                 }
             }
         }
+        .error-form{
+            color: $red;
+            font-size: 13px;
+            margin-top: 5px;
+        }
         label{
             font-size: 13px;
             display: block;
