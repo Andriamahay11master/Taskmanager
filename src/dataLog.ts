@@ -29,8 +29,7 @@ const dataOnboarding = {
     textUser: "Don't have an account?",
     labelSignup: 'Sign up', 
     textForgot: 'Forgot your password?',
-    routeForgot: '/forgot',
-    routeClick: '/home'
+    routeForgot: '/forgot'
   }
 
   const dataForgot = {
