@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { Poppin } from "../poppin/Poppin";
+import { auth } from "../../firebase";
+import { sendPasswordResetEmail } from "@firebase/auth";
 
 interface ForgotProps {
     title: string
@@ -13,12 +15,17 @@ interface ForgotProps {
 }
 export default function Forgot({title, subtitle, email, labelButton, routeSignup, textUser, labelSignup} : ForgotProps) {
 
+    const [emailu, setEmailu] = React.useState('');
     const [success, setSuccess] = React.useState(false);
 
     
     const resetPassword = (e : any) => {
         e.preventDefault();
-        console.log('resetPassword');setSuccess(true);
+
+        sendPasswordResetEmail(auth, emailu)
+        .then(() => {
+            setSuccess(true);
+        })
     }
 
 
@@ -30,7 +37,7 @@ export default function Forgot({title, subtitle, email, labelButton, routeSignup
                 <form>
                     <div className="form-group">
                         <label htmlFor="email"><i className="icon-mail"></i>{email}</label>
-                        <input type="email" id="email" placeholder="Write your email"/>
+                        <input type="email" id="email" placeholder="Write your email" onChange={(e) => setEmailu(e.target.value)}/>
                     </div>
                     <div className="form-group form-submit">
                         <button className="btn btn-primary" onClick={resetPassword}>{labelButton}</button>
