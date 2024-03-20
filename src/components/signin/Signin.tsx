@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { Poppin } from "../poppin/Poppin";
 
 
 interface SigninProps {
+    user: any
     title: string
     subtitle?: string
     email: string
@@ -17,7 +17,7 @@ interface SigninProps {
     textForgot: string
     routeForgot: string
 }
-export default function Signin({title, subtitle, email, password, labelButton, routeSignup, textUser, labelSignup, textForgot, routeForgot} : SigninProps) {
+export default function Signin({user, title, subtitle, email, password, labelButton, routeSignup, textUser, labelSignup, textForgot, routeForgot} : SigninProps) {
     
     const [showPassword, setShowPassword] = React.useState(false);
     const [emailu, setEmailu] = React.useState('');
@@ -77,6 +77,10 @@ export default function Signin({title, subtitle, email, password, labelButton, r
         setShowPassword(!showPassword);
     }
 
+    if(user) {
+        return <Navigate to="/home" />
+    }
+
     return (
         <div className="form-block">
             <h1 className="title-h1">{title}</h1>
@@ -104,7 +108,7 @@ export default function Signin({title, subtitle, email, password, labelButton, r
                 </form>
                 <p>{textUser} <Link className="btn btn-link" to={routeSignup}>{labelSignup}</Link></p>
             </div>
-            {success && <Poppin title="Success" message="You are connected" linkBtn="/home" valBtn="Go to home"/>}
+            {success && <h2>Loading...</h2>}
         </div>
     );
 }
