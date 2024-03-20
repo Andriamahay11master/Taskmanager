@@ -16,6 +16,7 @@ import Forgot from './components/forgot/Forgot';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import { ProtectedRoute } from './components/protectedRoute';
+import Loader from './components/loader/Loader';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -34,7 +35,7 @@ function App() {
       return () => unsubscribe();
   })
   if (isFetching) {
-    return <h2>Loading...</h2>;
+    return <Loader />;
   }
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

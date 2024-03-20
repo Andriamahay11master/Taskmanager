@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Navigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import Loader from "../loader/Loader";
 
 
 interface SigninProps {
@@ -108,7 +109,7 @@ export default function Signin({user, title, subtitle, email, password, labelBut
                 </form>
                 <p>{textUser} <Link className="btn btn-link" to={routeSignup}>{labelSignup}</Link></p>
             </div>
-            {success && <h2>Loading...</h2>}
+            {success && <Loader />}
         </div>
     );
 }
