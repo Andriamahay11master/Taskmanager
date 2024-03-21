@@ -7,6 +7,7 @@ import Category from '../category/Category';
 import Itemtask from '../ItemTask/Itemtask';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
+
 export default function Home() {
     const [userEmail, setUserEmail] = useState('');
 
@@ -30,9 +31,9 @@ export default function Home() {
                 setUserEmail('');
             }
         });
-
         // Cleanup subscription
         return () => unsubscribe();
+        
     }, []);
 
     return (

@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Poppin } from "../poppin/Poppin";
 
 interface SignupProps {
+    user: any
     title: string
     subtitle?: string
     username?: string
@@ -15,7 +16,7 @@ interface SignupProps {
     textUser: string
     labelSignin: string
 }
-export default function Signup({title, subtitle, username, emailu, passwordu, labelButton, routeSignin, textUser, labelSignin} : SignupProps) {
+export default function Signup({user, title, subtitle, username, emailu, passwordu, labelButton, routeSignin, textUser, labelSignin} : SignupProps) {
 
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = React.useState('');
@@ -33,8 +34,9 @@ export default function Signup({title, subtitle, username, emailu, passwordu, la
         if(!email && !password) return;
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            setSuccess(true);
             const user = userCredential.user;
+            setSuccess(true);
+            localStorage.setItem('isLoggedIn', 'false');
             console.log(user)
         })
         .catch((error) => {
@@ -75,6 +77,12 @@ export default function Signup({title, subtitle, username, emailu, passwordu, la
         setPassword(e.target.value);
         if(errorExist) setErrorExist(false);
     }
+
+    if(user && localStorage.getItem('isLoggedIn') === 'true') {
+        console.log("********signi in",localStorage.getItem('isLoggedIn'));
+        return <Navigate to="/home" />
+    }
+
     return (
         <div className="form-block">
             <h1 className="title-h1">{title}</h1>

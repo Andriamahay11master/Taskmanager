@@ -21,7 +21,6 @@ import Loader from './components/loader/Loader';
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const [isFetching, setIsFetching] = useState(true);
-  
   useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
           if (user) {
@@ -43,7 +42,7 @@ function App() {
       <Routes>
         <Route path="/home" element={
           <ProtectedRoute user={user}>
-            <Home/>
+              <Home/>
           </ProtectedRoute>  
           } />
         <Route path="/onboarding" element={<Onboarding {...dataOnboarding}/>}/>
@@ -51,8 +50,8 @@ function App() {
         <Route path="/parameter" element={<Parameter />}/>
         <Route path="/addTask" element={<Addtask />}/>
         <Route path="/task" element={<Task />}/>
-        <Route path="/signup" element={<Signup {...dataSIgnup}/>}/>
-        <Route path="/signin" element={<Signin user={user} {...dataSignin}/>}/>
+        <Route path="/signup" element={<Signup user={user} {...dataSIgnup}/>}/>
+          <Route path="/signin" element={<Signin user={user} {...dataSignin}/>}/>
         <Route path="/forgot" element={<Forgot {...dataForgot}/>}/>
         <Route path="/" element={<Onboarding {...dataOnboarding}/>}/>
       </Routes>

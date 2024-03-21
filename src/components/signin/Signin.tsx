@@ -33,8 +33,12 @@ export default function Signin({user, title, subtitle, email, password, labelBut
         if(!emailu && !passwordu) return;
         signInWithEmailAndPassword(auth, emailu, passwordu)
         .then((userCredential) => {
-            setSuccess(true);
             const user = userCredential.user;
+            // Set user data in localStorage
+            localStorage.setItem('user', JSON.stringify(user));
+            // Optionally, you can set a flag to indicate the user is logged in
+            localStorage.setItem('isLoggedIn', 'true');
+            setSuccess(true);
             console.log(user)
         })
         .catch((error) => {
@@ -78,7 +82,8 @@ export default function Signin({user, title, subtitle, email, password, labelBut
         setShowPassword(!showPassword);
     }
 
-    if(user) {
+    if(user && localStorage.getItem('isLoggedIn') === 'true') {
+        console.log("********signi in",localStorage.getItem('isLoggedIn'));
         return <Navigate to="/home" />
     }
 
