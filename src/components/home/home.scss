@@ -3,8 +3,7 @@
 
 .appBlock{
     padding-bottom: 75px;
-    .appSearchBlock{
-        margin-bottom: 24px;
+    .appTopBlock{
         position: sticky;
         top: 20px;
         z-index: 2;
@@ -16,14 +15,41 @@
             left: -20px;
             top: -100px;
             width: 100vw;
-            height: 175px;
+            height: 220px;
             background: $white;
             z-index: -1;
             @include max(575px){
                 top: -50px;
-                height: 125px;
+                height: 175px;
             }
         }
+    }
+    .appUser{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .appUserCol{
+            display: flex;
+            align-items: center;
+            .imgUser{
+                margin-right: 10px;
+                img{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                }
+            }
+            p{
+                font-size: 16px;
+                color: $black;
+                font-weight: 600;
+            }
+        }
+    }
+    .appSearchBlock{
+        margin-bottom: 24px;
+        position: relative;
         button{
             position: absolute;
             left: 18px;

@@ -38,13 +38,24 @@ export default function Home() {
 
     return (
         <div className="appBlock">
-            <div className="appSearchBlock">
-                <button className='btn btn-icon' onClick={searchTask}><i className='icon-search'></i></button>
-                <input type="text" placeholder="Search for Tasks, Events"/>
+            <div className="appTopBlock">
+                <div className="appUser">
+                    <div className="appUserCol">
+                        <div className="imgUser">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt=""/>
+                        </div>
+                        <p>{userEmail && `${userEmail}`}</p>
+                    </div>
+                    <div className="appUserCol">
+                        <button className='btn btn-icon' onClick={logout}><i className="icon-log-out"></i></button>
+                    </div>
+                </div>
+                <div className="appSearchBlock">
+                    <button className='btn btn-icon btn-logout' onClick={searchTask}><i className='icon-search'></i></button>
+                    <input type="text" placeholder="Search for Tasks, Events"/>
+                </div>
             </div>
             <div className="appItem">
-                <p>{userEmail && `Logged in as: ${userEmail}`}</p>
-            <button className='btn btn-primary' onClick={logout}>Logout</button>
                 <h2 className="title-h2">Categories</h2>
                 <div className="listCategory">
                     {listCategory.map((item, index) => <Category key={index} label={item.label} icon={item.icon} color={item.color} />)}
