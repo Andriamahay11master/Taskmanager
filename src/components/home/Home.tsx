@@ -1,15 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../menu/Menu';
-import {dataMenu, listCategory, listTasks} from '../../data';
+import {dataMenu, listTasks} from '../../data';
 import './home.scss';      
 import { Link } from 'react-router-dom';
 import Category from '../category/Category';
 import Itemtask from '../ItemTask/Itemtask';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { db } from '../../firebase';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { CategoryType } from '../../models/CategoryType';
+
+
 
 export default function Home() {
     const [userEmail, setUserEmail] = useState('');
+    const [categoryData, setCategoryData] = useState<CategoryType[]>([]);
+
+    //Get Data to firestore
+    const fetchPost = async () => {
+        try {
+            const q = query(collection(db, "category"), orderBy("id", "asc"));
+            const querySnapshot = await getDocs(q);
+            const newData = querySnapshot.docs.map(doc => ({
+                id: doc.data().id,
+                icon: doc.data().icon,
+                label: doc.data().label,
+                color: doc.data().color
+            }));
+            setCategoryData(newData);
+        } catch (error) {
+            console.error("Error fetching documents: ", error);
+        }
+    }
 
     const searchTask = () => {
         console.log('searchTask')
@@ -24,6 +47,7 @@ export default function Home() {
     }
 
     useEffect(() => {
+        fetchPost();
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserEmail(user.email|| '');
@@ -58,7 +82,7 @@ export default function Home() {
             <div className="appItem">
                 <h2 className="title-h2">Categories</h2>
                 <div className="listCategory">
-                    {listCategory.map((item, index) => <Category key={index} label={item.label} icon={item.icon} color={item.color} />)}
+                    {categoryData.map((item, index) => <Category key={index} icon={item.icon} label={item.label} color={item.color}/>)}
                 </div>
             </div>
             <div className="appItem">

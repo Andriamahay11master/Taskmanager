@@ -1,13 +1,40 @@
 
 import Menu from '../menu/Menu';
-import {dataMenuWithoutAdd, listCategory} from '../../data';
+import {dataMenuWithoutAdd} from '../../data';
 import './addTask.scss';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
+import { query, collection, getDocs, orderBy } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { useEffect, useState } from 'react';
+import { CategoryType } from '../../models/CategoryType';
+
 
 export default function Addtask() {
+
+    const [categoryData, setCategoryData] = useState<CategoryType[]>([]);
     const addTask = () => {
         console.log('addTask')
     }
+
+    const fetchPost = async () => {
+        try {
+            const q = query(collection(db, "category"), orderBy("id", "asc"));
+            const querySnapshot = await getDocs(q);
+            const newData = querySnapshot.docs.map(doc => ({
+                id: doc.data().id,
+                icon: doc.data().icon,
+                label: doc.data().label,
+                color: doc.data().color
+            }));
+            setCategoryData(newData);
+        } catch (error) {
+            console.error("Error fetching documents: ", error);
+        }
+     }
+
+     useEffect(() => {
+         fetchPost();
+     }, [ ]);
     return (
         
         <div className="appBlock">
@@ -19,7 +46,7 @@ export default function Addtask() {
                 <div className="form-group">
                     <label htmlFor="category">Category</label>
                     <select className="input-forms" name="category" id="category">
-                        {listCategory.map((item, index) => <option key={index} value={item.label}>{item.label}</option>)}
+                        {categoryData.map((item, index) => <option key={index} value={item.label}>{item.label}</option>)}
                     </select>
                 </div>
                 <div className="form-group form-date" >
