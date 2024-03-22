@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../menu/Menu';
-import {dataMenu, listTasks} from '../../data';
+import {dataMenu} from '../../data';
 import './home.scss';      
 import { Link } from 'react-router-dom';
 import Category from '../category/Category';
@@ -19,6 +19,7 @@ export default function Home() {
     const [userEmail, setUserEmail] = useState('');
     const [categoryData, setCategoryData] = useState<CategoryType[]>([]);
     const [taskData, setTaskData] = useState<TaskType[]>([]);
+    const [keyword, setKeyword] = useState('');
 
     //Get Data to firestore
     const fetchPost = async () => {
@@ -72,9 +73,33 @@ export default function Home() {
         }
     }
 
-    const searchTask = () => {
-        console.log('searchTask')
+
+    const searchTask = async (keyword: string) => {
+    try {
+        if (keyword.trim() === '') {
+            // If keyword is empty, fetch all tasks again
+            fetchTask();
+        } else {
+            const filteredTasks = taskData.filter(task => {
+                // Convert task name and notes to lowercase for case-insensitive search
+                const taskName = task.task.toLowerCase();
+                const taskNotes = task.notes ? task.notes.toLowerCase() : '';
+
+                // Check if either task name or notes contain the keyword
+                return taskName.includes(keyword.toLowerCase()) || taskNotes.includes(keyword.toLowerCase());
+            });
+
+            // Update the task data with filtered tasks
+            setTaskData(filteredTasks);
+            setKeyword('');
+        }
+    } catch (error) {
+        console.error("Error filtering tasks: ", error);
     }
+};
+
+    
+
 
     const logout = () => {
         signOut(auth).then(() => {
@@ -114,8 +139,8 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="appSearchBlock">
-                    <button className='btn btn-icon btn-logout' onClick={searchTask}><i className='icon-search'></i></button>
-                    <input type="text" placeholder="Search for Tasks, Events"/>
+                    <button className='btn btn-icon btn-logout' onClick={() => searchTask(keyword)}><i className='icon-search'></i></button>
+                    <input type="text" placeholder="Search for Tasks, Events" value={keyword} onChange={(e) => setKeyword(e.target.value) }/>
                 </div>
             </div>
             <div className="appItem">
