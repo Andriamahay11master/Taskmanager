@@ -8,9 +8,10 @@ import Itemtask from '../ItemTask/Itemtask';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { db } from '../../firebase';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { CategoryType } from '../../models/CategoryType';
 import { TaskType } from '../../models/TaskType';
+import { startOfDay, endOfDay } from 'date-fns';
 
 
 
@@ -39,7 +40,10 @@ export default function Home() {
     //Get Data Task to firestore
     const fetchTask = async () => {
         try {
-            const q = query(collection(db, "tasks"), orderBy("id", "asc"));
+            const today = new Date();
+            const startOfToday = startOfDay(today); // Début de la journée actuelle
+            const endOfToday = endOfDay(today);
+            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday), orderBy("date", "asc"));
             const querySnapshot = await getDocs(q);
             const newData = querySnapshot.docs.map(doc => {
                 // Convertir le timestamp Firestore en objet Date
@@ -62,8 +66,6 @@ export default function Home() {
                     state: doc.data().state
                 }
             });
-            console.log(newData)
-            console.log("date",newData[0].time, typeof newData[0].time);
             setTaskData(newData);
         } catch (error) {
             console.error("Error fetching documents: ", error);
