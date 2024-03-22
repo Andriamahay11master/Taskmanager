@@ -10,12 +10,14 @@ import { auth } from '../../firebase';
 import { db } from '../../firebase';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { CategoryType } from '../../models/CategoryType';
+import { TaskType } from '../../models/TaskType';
 
 
 
 export default function Home() {
     const [userEmail, setUserEmail] = useState('');
     const [categoryData, setCategoryData] = useState<CategoryType[]>([]);
+    const [taskData, setTaskData] = useState<TaskType[]>([]);
 
     //Get Data to firestore
     const fetchPost = async () => {
@@ -29,6 +31,40 @@ export default function Home() {
                 color: doc.data().color
             }));
             setCategoryData(newData);
+        } catch (error) {
+            console.error("Error fetching documents: ", error);
+        }
+    }
+
+    //Get Data Task to firestore
+    const fetchTask = async () => {
+        try {
+            const q = query(collection(db, "tasks"), orderBy("id", "asc"));
+            const querySnapshot = await getDocs(q);
+            const newData = querySnapshot.docs.map(doc => {
+                // Convertir le timestamp Firestore en objet Date
+                const timestampSeconds = doc.data().time.seconds;
+                const timestampMilliseconds = timestampSeconds * 1000;
+                const date = new Date(timestampMilliseconds);
+                
+                // Formater l'heure et les minutes
+                const heure = ('0' + date.getHours()).slice(-2);
+                const minute = ('0' + date.getMinutes()).slice(-2);
+                const formattedTime = `${heure}:${minute}`;
+
+                return {
+                    id: doc.data().id,
+                    task: doc.data().task,
+                    date: doc.data().date.seconds,
+                    category: doc.data().category,
+                    time: formattedTime,
+                    notes: doc.data().notes,
+                    state: doc.data().state
+                }
+            });
+            console.log(newData)
+            console.log("date",newData[0].time, typeof newData[0].time);
+            setTaskData(newData);
         } catch (error) {
             console.error("Error fetching documents: ", error);
         }
@@ -48,6 +84,7 @@ export default function Home() {
 
     useEffect(() => {
         fetchPost();
+        fetchTask();
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserEmail(user.email|| '');
@@ -90,7 +127,7 @@ export default function Home() {
                 <Link className="btn btn-link" to="/task">See all</Link>
                 </div>
                 <div className="listTask">
-                    {listTasks.map((item, index) => <Itemtask key={index} task={item.task} time={item.time} />)}
+                    {taskData.map((item, index) => <Itemtask key={index} task={item.task} time={item.time}/>)}
                 </div>
             </div>
             <Menu {...dataMenu}/>

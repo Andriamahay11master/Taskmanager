@@ -3,7 +3,7 @@ import './itemtask.scss';
 
 interface ItemtaskProps {
     task: string
-    time: string
+    time?: string
 }
 
 export default function Itemtask({task, time} : ItemtaskProps) {
