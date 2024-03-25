@@ -6,8 +6,7 @@ import Itemtask from '../ItemTask/Itemtask';
 import { Link } from 'react-router-dom';
 import { TaskType } from '../../models/TaskType';
 import { useEffect, useState } from 'react';
-import { endOfDay, startOfDay } from 'date-fns';
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 export default function Task() {
@@ -32,10 +31,6 @@ export default function Task() {
 
                 const dateTask = new Date(doc.data().date.seconds * 1000);
                 const dayL = dateTask.toDateString();
-                const day = ('0' + dateTask.getDate()).slice(-2);
-                const month = ('0' + (dateTask.getMonth() + 1)).slice(-2);
-                const year = dateTask.getFullYear();
-                const dataTaskF = `${day}/${month}/${year}`;
 
                 return {
                     id: doc.data().id,
