@@ -22,6 +22,9 @@
     p{
         font-size: 13px;  
         color: rgba($black, 0.8);
+        &.task-label{
+            margin-bottom: 5px;
+        }
     }
     &.task-finished{
         p{
