@@ -54,6 +54,9 @@ export default function Itemtask({task, date, time} : ItemtaskProps) {
         }
     }
 
+    const seeDetailTask = (task: string) => {
+        console.log(task);
+    }
     return (
         
         <div className={"task-item" + (taskFinished ? " task-finished" : "")}>
@@ -72,6 +75,7 @@ export default function Itemtask({task, date, time} : ItemtaskProps) {
             </div>
             <div className="task-col">
                 <p className='task-label'>{time}</p>
+                <button className="btn btn-primary" onClick={() => seeDetailTask(task)}><i className='icon-eye'></i><span>See Details</span></button>
             </div>
         </div>
     )

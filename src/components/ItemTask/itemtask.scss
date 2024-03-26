@@ -38,5 +38,31 @@
         display: flex;
         align-items: center;
         white-space: nowrap;
+        &:last-child{
+            p{
+                margin-bottom: 0;
+            }
+            .btn{
+                margin-left: 10px;
+                font-size: 13px;
+                padding: 10px;
+                @include max(575px){
+                    padding: 5px 10px;
+                    font-size: 15px;
+                }
+                i{
+                    display: none;
+                    @include max(575px){
+                        display: block;
+                    }
+                }
+                span{
+                    display: inline-block;
+                    @include max(575px){
+                        display: none;
+                    }
+                }
+            }
+        }
     }
 }
