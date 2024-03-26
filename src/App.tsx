@@ -17,6 +17,7 @@ import { User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import { ProtectedRoute } from './components/protectedRoute';
 import Loader from './components/loader/Loader';
+import Detailtask from './components/detailTask/Detailtask';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -49,6 +50,7 @@ function App() {
         <Route path="/calendar" element={<Calendar />}/>
         <Route path="/parameter" element={<Parameter />}/>
         <Route path="/addTask" element={<Addtask />}/>
+        <Route path="/detailTask/:id" element={<Detailtask />}/>
         <Route path="/task" element={<Task />}/>
         <Route path="/signup" element={<Signup user={user} {...dataSIgnup}/>}/>
           <Route path="/signin" element={<Signin user={user} {...dataSignin}/>}/>

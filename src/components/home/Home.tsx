@@ -153,7 +153,7 @@ export default function Home() {
                 <Link className="btn btn-link" to="/task">See all</Link>
                 </div>
                 <div className="listTask">
-                    {taskData.map((item, index) => <Itemtask key={index} task={item.task} time={item.time}/>)}
+                    {taskData.map((item, index) => <Itemtask key={index} id={item.id} task={item.task} time={item.time}/>)}
                 </div>
             </div>
             <Menu {...dataMenu}/>

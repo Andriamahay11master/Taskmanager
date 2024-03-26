@@ -57,7 +57,7 @@ export default function Task() {
             <div className="appItem">
                 <h2 className="title-h2">All tasks</h2>
                 <div className="listTask">
-                    {taskData.map((item, index) => <Itemtask key={index} task={item.task} time={item.time} date={item.date}/>)}
+                    {taskData.map((item, index) => <Itemtask key={index} id={item.id} task={item.task} time={item.time} date={item.date}/>)}
                 </div>
             </div>
             <div className="appAdd">

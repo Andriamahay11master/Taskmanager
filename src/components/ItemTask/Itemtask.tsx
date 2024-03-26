@@ -2,23 +2,27 @@ import { useState } from 'react';
 import './itemtask.scss';
 import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { TaskType } from '../../models/TaskType';
+import { useNavigate } from 'react-router-dom';
 
 interface ItemtaskProps {
+    id: number
     task: string
     date?: string
     time?: string
 }
 
-export default function Itemtask({task, date, time} : ItemtaskProps) {
+export default function Itemtask({id, task, date, time} : ItemtaskProps) {
     const [taskFinished, setTaskFinished] = useState(false);
     const [currentDocument, setIdCurrentDocument] = useState('');
-
+    const [taskData, setTaskData] = useState<TaskType>({} as TaskType);
+    const navigate = useNavigate();
     //Get ID Task to firestore
     const fetchTask = async (taske : string) => {
         try {
             const q = query(collection(db, "tasks"), where("task", "==", taske));
             const querySnapshot = await getDocs(q);
-            querySnapshot.docs.map(doc => {
+            const newData = querySnapshot.docs.map(doc => {
                 const taskID = doc.id;
                 setIdCurrentDocument(taskID)
                 return {
@@ -31,7 +35,7 @@ export default function Itemtask({task, date, time} : ItemtaskProps) {
                     state: doc.data().state
                 }
             })
-            console.log("test", currentDocument);
+            setTaskData(newData[0]);
         } catch (error) {
             console.error("Error fetching documents: ", error);
         }
@@ -54,8 +58,8 @@ export default function Itemtask({task, date, time} : ItemtaskProps) {
         }
     }
 
-    const seeDetailTask = (task: string) => {
-        console.log(task);
+    const seeDetailTask = (id: number) => {
+        navigate(`/detailTask/${id}`);
     }
     return (
         
@@ -75,7 +79,7 @@ export default function Itemtask({task, date, time} : ItemtaskProps) {
             </div>
             <div className="task-col">
                 <p className='task-label'>{time}</p>
-                <button className="btn btn-primary" onClick={() => seeDetailTask(task)}><i className='icon-eye'></i><span>See Details</span></button>
+                <button className="btn btn-primary" onClick={() => seeDetailTask(id)}><i className='icon-eye'></i><span>See Details</span></button>
             </div>
         </div>
     )
