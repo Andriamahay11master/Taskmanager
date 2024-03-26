@@ -86,7 +86,7 @@ export default function Detailtask() {
                                     <p className='detail-time'><span>Time :</span>{time}</p>
                                 </div>
                                 <div className="detailTask-bottom-col">
-                                    <Link className="btn btn-primary" to="/reschedule">Reschedule</Link>
+                                    <Link className="btn btn-primary" to={`/reschedule/${id}`}>Reschedule</Link>
                                 </div>
                             </div>
                         </div>
