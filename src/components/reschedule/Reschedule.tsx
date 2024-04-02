@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './reschedule.scss'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Timestamp, collection, doc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore';
 import { db } from '../../firebase';
-import { TaskType } from '../../models/TaskType';
 import Menu from '../menu/Menu';
 import { dataMenuWithoutAdd } from '../../data';
 import { Poppin } from '../poppin/Poppin';
@@ -17,7 +16,6 @@ export default function Reschedule() {
 
     let idConverted = parseInt(id ?? '0');
 
-    const [taskData, setTaskData] = useState<TaskType[]>([]);
     const [categoryData, setCategoryData] = useState<CategoryType[]>([]);
     const [success, setSuccess] = useState(false);
     const [task, setTask] = useState('');
@@ -75,14 +73,12 @@ export default function Reschedule() {
                 state: doc.data().state
                 }
             });
-            setTaskData(newData);
             console.log("data",newData[0]);
-            console.log("taskData",taskData);
-            setTask(taskData[0]?.task);
-            setCategory(taskData[0]?.category);
-            setNotes(taskData[0]?.notes);
-            setDate(Timestamp.fromDate(new Date(taskData[0]?.date)));
-            setTime(Timestamp.fromDate(new Date(taskData[0]?.time)));
+            setTask(newData[0]?.task);
+            setCategory(newData[0]?.category);
+            setNotes(newData[0]?.notes);
+            setDate(Timestamp.fromDate(new Date(newData[0]?.date)));
+            setTime(Timestamp.fromDate(new Date(newData[0]?.time)));
             console.log("task",task);
         } catch (error) {
             console.error("Error fetching documents: ", error);
