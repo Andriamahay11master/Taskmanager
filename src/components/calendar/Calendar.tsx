@@ -5,17 +5,22 @@ import './calendar.scss';
 import { DateCalendar } from '@mui/x-date-pickers';
 import Itemtask from '../ItemTask/Itemtask';
 import { useEffect, useState } from 'react';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { Timestamp, collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TaskType } from '../../models/TaskType';
+import { endOfDay, startOfDay } from 'date-fns';
 
 export default function Calendar() {
 
-    const [taskData, setTaskData] = useState<TaskType[]>([]);
+    const [taskData, setTaskData] = useState<TaskType[]>([] || null);
+    const [dateSelected, setDateSelected] = useState<Timestamp | null>(null);
      //Get Data Task to firestore
      const fetchTask = async () => {
         try {
-            const q = query(collection(db, "tasks"), orderBy("date", "desc"));
+            const today = dateSelected && dateSelected.toDate();
+            const startOfToday = startOfDay(today || new Date()); // Début de la journée actuelle
+            const endOfToday = endOfDay(today || new Date());
+            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday) ,orderBy("date", "desc"));
             const querySnapshot = await getDocs(q);
             const newData = querySnapshot.docs.map(doc => {
                 // Convertir le timestamp Firestore en objet Date
@@ -49,18 +54,24 @@ export default function Calendar() {
 
     useEffect(() => {
         fetchTask();
-    }, []);
+    }, [dateSelected]);
 
     return (
         
         <div className="appBlock">
             <div className="appItem">
                 <h2 className="title-h2">Calendar</h2>
-                <DateCalendar />
+                <DateCalendar value={dateSelected} onChange={(newValue) => setDateSelected(newValue)}/>
             </div>
             <div className="appItem">
                 <div className="listTask">
-                    {taskData.map((item, index) => <Itemtask key={index} id={item.id} task={item.task} time={item.time} date={item.date}/>)}
+                    {taskData.length > 0 ? 
+                        taskData.map((item, index) => 
+                            <Itemtask key={index} id={item.id} task={item.task} time={item.time} date={item.date}/>
+                        ) 
+                        : 
+                        <p>No tasks found in this date</p>
+                    }
                 </div>
             </div>
             <Menu {...dataMenu}/>
