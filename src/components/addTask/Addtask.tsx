@@ -63,7 +63,8 @@ export default function Addtask() {
                     date: Timestamp.fromDate(new Date(date.toString())),
                     category: category,
                     time: Timestamp.fromDate(new Date(time.toString())),
-                    notes: notes
+                    notes: notes,
+                    state: false
                 });
                 setSuccess(true);
                 resetValForm();
