@@ -44,7 +44,7 @@ export default function Home() {
             const today = new Date();
             const startOfToday = startOfDay(today); // Début de la journée actuelle
             const endOfToday = endOfDay(today);
-            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday), orderBy("date", "asc"));
+            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday), where("state", "==", false), orderBy("date", "asc"));
             const querySnapshot = await getDocs(q);
             const newData = querySnapshot.docs.map(doc => {
                 // Convertir le timestamp Firestore en objet Date

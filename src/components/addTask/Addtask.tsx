@@ -3,7 +3,7 @@ import Menu from '../menu/Menu';
 import {dataMenuWithoutAdd} from '../../data';
 import './addTask.scss';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
-import { query, collection, getDocs, orderBy, addDoc, Timestamp } from 'firebase/firestore';
+import { query, collection, getDocs, orderBy, addDoc, Timestamp, limit } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useEffect, useState } from 'react';
 import { CategoryType } from '../../models/CategoryType';
@@ -13,6 +13,7 @@ import { Poppin } from '../poppin/Poppin';
 export default function Addtask() {
 
     const [categoryData, setCategoryData] = useState<CategoryType[]>([]);
+    const [idTask, setIdTask] = useState<number | null>(null);
     const [task, setTask] = useState('');
     const [category, setCategory] = useState('');
     const [date, setDate] = useState<Timestamp | null>(null);
@@ -38,10 +39,26 @@ export default function Addtask() {
         setTime(null);
      }
 
+     const fetchLastId = async () => {
+        try {
+            const q = query(collection(db, "tasks"), orderBy("id", "desc"), limit(1)); // Limit to 1 document
+            const querySnapshot = await getDocs(q);
+            if (!querySnapshot.empty) {
+                const lastId = querySnapshot.docs[0].data().id;
+                setIdTask(lastId + 1); // Set the new ID as the last ID + 1
+            } else {
+                setIdTask(1); // If no documents found, set ID to 1
+            }
+        } catch (error) {
+            console.error("Error fetching last ID: ", error);
+        }
+    }
+
     const addTask = async () => {
         try{
             if(date && time) {
                 await addDoc(collection(db, "tasks"), {
+                    id: idTask,
                     task: task,
                     date: Timestamp.fromDate(new Date(date.toString())),
                     category: category,
@@ -77,6 +94,7 @@ export default function Addtask() {
 
      useEffect(() => {
          fetchPost();
+        fetchLastId();
      }, [ ]);
     return (
         
