@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 
 export default function Parameter() {
     const [success, setSuccess] = useState(false);
-    const [labelCategory, setLabelCategory] = useState('');
+    const [labelCategory, setLabelCategory] = useState('icon-activity');
     const [iconCategory, setIconCategory] = useState('');
     const [color, setColor] = useState('');
     const [idCategory, setIdCategory] = useState<number | null>(null);
@@ -67,10 +67,10 @@ export default function Parameter() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="category">Icons category</label>
-                    <select className="input-forms" name="category" id="category" value={iconCategory} onChange={(e) => setIconCategory(e.target.value)}>
+                    <select className='input-forms' id="iconCategory" value={iconCategory} onChange={(e) => setIconCategory(e.target.value)}>
                         {listIconFeather.map((icon) => (
-                            <option key={icon} value={icon}>
-                                <i className={icon}></i>{icon}
+                            <option key={icon.val} value={icon.val}>    
+                                {icon.label}
                             </option>
                         ))}
                     </select>
