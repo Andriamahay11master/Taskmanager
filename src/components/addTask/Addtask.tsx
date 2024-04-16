@@ -3,11 +3,12 @@ import Menu from '../menu/Menu';
 import {dataMenuWithoutAdd} from '../../data';
 import './addTask.scss';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
-import { query, collection, getDocs, orderBy, addDoc, Timestamp, limit } from 'firebase/firestore';
+import { query, collection, getDocs, orderBy, addDoc, Timestamp, limit, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useEffect, useState } from 'react';
 import { CategoryType } from '../../models/CategoryType';
 import { Poppin } from '../poppin/Poppin';
+import { uid } from '../../dataLog';
 
 
 export default function Addtask() {
@@ -64,7 +65,8 @@ export default function Addtask() {
                     category: category,
                     time: Timestamp.fromDate(new Date(time.toString())),
                     notes: notes,
-                    state: false
+                    state: false,
+                    uid: uid
                 });
                 setSuccess(true);
                 resetValForm();
@@ -77,7 +79,7 @@ export default function Addtask() {
 
     const fetchPost = async () => {
         try {
-            const q = query(collection(db, "category"), orderBy("id", "asc"));
+            const q = query(collection(db, "category"), where("uid", "==", uid), orderBy("id", "asc"));
             const querySnapshot = await getDocs(q);
             const newData = querySnapshot.docs.map(doc => ({
                 id: doc.data().id,

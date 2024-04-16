@@ -12,6 +12,7 @@ import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { CategoryType } from '../../models/CategoryType';
 import { TaskType } from '../../models/TaskType';
 import { startOfDay, endOfDay } from 'date-fns';
+import { uid } from '../../dataLog';
 
 
 
@@ -21,15 +22,6 @@ export default function Home() {
     const [taskData, setTaskData] = useState<TaskType[]>([]);
     const [keyword, setKeyword] = useState('');
     
-    // Get the user JSON string from localStorage
-    const userString = localStorage.getItem('user');
-
-    // Parse the JSON string into an object
-    const userObject = JSON.parse(userString ?? '');
-
-    // Extract the UID property from the object
-    const uid = userObject.uid;
-
     //Get Data to firestore
     const fetchPost = async () => {
         try {

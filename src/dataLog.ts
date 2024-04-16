@@ -42,4 +42,18 @@ const dataOnboarding = {
     labelSignup: 'Sign up',
   }
 
-  export {dataOnboarding, dataSIgnup, dataSignin, dataForgot}
+  // Get the user JSON string from localStorage
+const userString = localStorage.getItem('user');
+
+let uid ='';
+// Check if userString is not null
+if (userString) {
+  // Parse the JSON string into an object
+  const userObject = JSON.parse(userString);
+
+  // Extract the UID property from the object
+  uid = userObject.uid;
+} 
+
+
+  export {dataOnboarding, dataSIgnup, dataSignin, dataForgot, uid}
