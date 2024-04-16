@@ -9,6 +9,7 @@ import { Timestamp, collection, getDocs, orderBy, query, where } from 'firebase/
 import { db } from '../../firebase';
 import { TaskType } from '../../models/TaskType';
 import { endOfDay, startOfDay } from 'date-fns';
+import { uid } from '../../dataLog';
 
 export default function Calendar() {
 
@@ -20,7 +21,7 @@ export default function Calendar() {
             const today = dateSelected && dateSelected.toDate();
             const startOfToday = startOfDay(today || new Date()); // Début de la journée actuelle
             const endOfToday = endOfDay(today || new Date());
-            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday) ,orderBy("date", "desc"));
+            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday), where("uid", "==", uid), orderBy("date", "desc"));
             const querySnapshot = await getDocs(q);
             const newData = querySnapshot.docs.map(doc => {
                 // Convertir le timestamp Firestore en objet Date
