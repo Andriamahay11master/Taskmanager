@@ -6,8 +6,9 @@ import Itemtask from '../ItemTask/Itemtask';
 import { Link } from 'react-router-dom';
 import { TaskType } from '../../models/TaskType';
 import { useEffect, useState } from 'react';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { uid } from '../../dataLog';
 
 export default function Task() {
 
@@ -16,7 +17,7 @@ export default function Task() {
     //Get Data Task to firestore
     const fetchTask = async () => {
         try {
-            const q = query(collection(db, "tasks"), orderBy("date", "desc"));
+            const q = query(collection(db, "tasks"), where("uid", "==", uid), orderBy("date", "desc"));
             const querySnapshot = await getDocs(q);
             const newData = querySnapshot.docs.map(doc => {
                 // Convertir le timestamp Firestore en objet Date

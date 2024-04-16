@@ -7,11 +7,12 @@ import { useState } from 'react';
 import { addDoc, collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useEffect } from 'react';
+import { uid } from '../../dataLog';
 
 export default function Parameter() {
     const [success, setSuccess] = useState(false);
-    const [labelCategory, setLabelCategory] = useState('icon-activity');
-    const [iconCategory, setIconCategory] = useState('');
+    const [labelCategory, setLabelCategory] = useState('');
+    const [iconCategory, setIconCategory] = useState('icon-activity');
     const [color, setColor] = useState('');
     const [idCategory, setIdCategory] = useState<number | null>(null);
 
@@ -44,6 +45,7 @@ export default function Parameter() {
                     label: labelCategory,
                     icon: iconCategory,
                     color: color,
+                    uid: uid
                 });
                 setSuccess(true);
                 resetValForm();
