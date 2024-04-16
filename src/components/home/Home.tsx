@@ -44,7 +44,17 @@ export default function Home() {
             const today = new Date();
             const startOfToday = startOfDay(today); // Début de la journée actuelle
             const endOfToday = endOfDay(today);
-            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday), where("state", "==", false), orderBy("date", "asc"));
+            // Get the user JSON string from localStorage
+            const userString = localStorage.getItem('user');
+
+            // Parse the JSON string into an object
+            const userObject = JSON.parse(userString ?? '');
+
+            // Extract the UID property from the object
+            const uid = userObject.uid;
+            console.log(uid)
+            
+            const q = query(collection(db, "tasks"), where("date", ">=", startOfToday), where("date", "<=", endOfToday), where("state", "==", false), where("uid", "==", uid), orderBy("date", "asc"));
             const querySnapshot = await getDocs(q);
             const newData = querySnapshot.docs.map(doc => {
                 // Convertir le timestamp Firestore en objet Date
