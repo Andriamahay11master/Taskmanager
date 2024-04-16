@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Taskmanager",
+  "name": "Create app for task manager",
   "icons": [
     {
       "src": "favicon.ico",
